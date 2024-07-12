@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FileCacheError: Error {
+public enum FileCacheError: Error {
     case itemAlreadyExists
     case documentDirectoryNotFound
     case invalidJSON
@@ -15,7 +15,7 @@ enum FileCacheError: Error {
     case fileNotFound
 }
 
-enum FileFormat {
+public enum FileFormat {
     case json
     case csv
 }
@@ -29,7 +29,7 @@ public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable>
         self.todoItems = todoItems
     }
 
-    func add(item: T) throws {
+    public func add(item: T) throws {
         guard todoItems.first(where: { $0.id == item.id }) == nil else {
             throw FileCacheError.itemAlreadyExists
         }
@@ -37,11 +37,11 @@ public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable>
         todoItems.append(item)
     }
 
-    func removeItem(by id: T.ID) {
+    public func removeItem(by id: T.ID) {
         todoItems.removeAll { $0.id == id }
     }
 
-    func save(to file: String, with format: FileFormat = .json, by separator: String = ",") throws {
+    public func save(to file: String, with format: FileFormat = .json, by separator: String = ",") throws {
         guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.documentDirectoryNotFound
         }
@@ -61,7 +61,7 @@ public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable>
         }
     }
 
-    func load(from file: String, with format: FileFormat = .json, by separator: String = ",") throws {
+    public func load(from file: String, with format: FileFormat = .json, by separator: String = ",") throws {
         guard let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.documentDirectoryNotFound
         }
