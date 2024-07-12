@@ -5,7 +5,7 @@
 //  Created by Иван Дроботов on 12.07.2024.
 //
 
-protocol JSONConvertible {
+public protocol JSONConvertible {
 
     static func parse(json: Any) -> Self?
 

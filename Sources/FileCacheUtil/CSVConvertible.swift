@@ -5,7 +5,7 @@
 //  Created by Иван Дроботов on 12.07.2024.
 //
 
-protocol CSVConvertible {
+public protocol CSVConvertible {
 
     static func parse(csv: Any, with separator: String) -> Self?
 
