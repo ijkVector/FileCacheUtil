@@ -25,7 +25,7 @@ public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable>
     
     private(set) var todoItems: [T] = []
     
-    public init(_ todoItems: [T]) {
+    public init(todoItems: [T]) {
         self.todoItems = todoItems
     }
 
