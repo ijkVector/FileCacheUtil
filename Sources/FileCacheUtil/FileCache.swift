@@ -21,7 +21,7 @@ enum FileFormat {
 }
 
 @available(macOS 10.15, *)
-final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable> {
+public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable> {
     
     private(set) var todoItems: [T] = []
 
