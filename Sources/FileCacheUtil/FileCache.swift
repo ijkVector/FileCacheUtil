@@ -24,6 +24,10 @@ enum FileFormat {
 public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable> {
     
     private(set) var todoItems: [T] = []
+    
+    public init(todoItems: [T]) {
+        self.todoItems = todoItems
+    }
 
     func add(item: T) throws {
         guard todoItems.first(where: { $0.id == item.id }) == nil else {
