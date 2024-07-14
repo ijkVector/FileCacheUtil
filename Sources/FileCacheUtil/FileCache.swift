@@ -37,8 +37,11 @@ public final class FileCache<T: JSONConvertible & CSVConvertible & Identifiable>
         todoItems.append(item)
     }
 
-    public func removeItem(by id: T.ID) {
-        todoItems.removeAll { $0.id == id }
+    @discardableResult public func removeItem(by id: T.ID) -> T? {
+        guard let index = todoItems.firstIndex(where: { $0.id == id }) else {
+            return nil
+        }
+        return todoItems.remove(at: index)
     }
 
     public func save(to file: String, with format: FileFormat = .json, by separator: String = ",") throws {
